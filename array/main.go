@@ -23,6 +23,12 @@ func main() {
 	//find the value in index
 	fmt.Println("value at int 2 is: ", name[2])
 
+	// var name[5] string
 
+	name[0] = "Piyush"
+	name[2] = "Agrawal"
+
+	fmt.Println("name is: ", name)
+	fmt.Printf("name array is %q\n", name)
 
 }
