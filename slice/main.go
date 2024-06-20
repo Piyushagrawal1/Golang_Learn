@@ -6,12 +6,16 @@ func main() {
 	fmt.Println("Slice in Go")
 
 	// number := []int {1,2,3,4,5}
+
 	// //append
 	// number = append(number, 6,7,8,9,10,11,12,13,14,15)
+
 	// //print the number
 	// fmt.Println("Number is: ", number)
+
 	// //find the type
 	// fmt.Printf("number has datatype: %T\n", number)
+	
 	// //find the length
 	// fmt.Println("length is: ", len(number))
 
