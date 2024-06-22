@@ -55,13 +55,13 @@ func main() {
 
 	var employee1 Employee
 
-	employee1.Person_Details = *person2 
+	// employee1.Person_Details = *person2 
 
-	// employee1.Person_Details = person {
-	// 	FirstName: "Piyush",
-	// 	Lastname:  "Agrawal",
-	// 	Age:       22,
-	// }
+	employee1.Person_Details = person {   //ye vala tarika upar vale tarike ko overlap kr deta hai
+		FirstName: "Piyush",
+		Lastname:  "Agrawal",
+		Age:       22,
+	}
 
 	employee1.Person_Contact.Email = "piyush@gmail.com"
 	employee1.Person_Contact.Phone = "1234567890"
