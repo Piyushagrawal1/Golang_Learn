@@ -14,8 +14,8 @@ type Contact struct {
 }
 
 type Address struct {
-	House int
-	Area string
+	House   int
+	Area    string
 	Conutry string
 }
 
@@ -55,9 +55,9 @@ func main() {
 
 	var employee1 Employee
 
-	// employee1.Person_Details = *person2 
+	// employee1.Person_Details = *person2
 
-	employee1.Person_Details = person {   //ye vala tarika upar vale tarike ko overlap kr deta hai
+	employee1.Person_Details = person{ //ye vala tarika upar vale tarike ko overlap kr deta hai
 		FirstName: "Piyush",
 		Lastname:  "Agrawal",
 		Age:       22,
@@ -67,9 +67,9 @@ func main() {
 	employee1.Person_Contact.Phone = "1234567890"
 
 	employee1.Person_Address = Address{
-		House: 123,
-		Area:  "pune",
-		Conutry:  "pune",
+		House:   123,
+		Area:    "pune",
+		Conutry: "pune",
 	}
 
 	fmt.Println("Employee 1 : ", employee1)
