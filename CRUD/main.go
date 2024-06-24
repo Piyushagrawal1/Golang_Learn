@@ -3,8 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"strings"
 
-	// "io/ioutil"
 	"net/http"
 )
 
@@ -16,9 +17,7 @@ type Todo struct {
 	Completed bool   `json:"completed"`
 }
 
-func main() {
-	fmt.Println("Learning CRUD in GO")
-
+func performGetResponse() {
 	resp, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
 	if err != nil {
 		fmt.Println("Error Getting: ", err)
@@ -62,6 +61,48 @@ func main() {
 	}
 
 	fmt.Println("Todo: ", todo)
-	
+}
 
+func performPostResponse() {
+	todo := Todo{
+		UserID:    21,
+		Title:     "Learn Go",
+		Completed: true,
+	}
+	//convert the todo struct to json
+	jsonData, err := json.Marshal(todo)
+	if err != nil {
+		fmt.Println("Error Marshalling: ", err)
+		return
+	}
+	// fmt.Println("jsonData: ", string(jsonData))
+
+	//convert string data to reader
+	stringData := string(jsonData)
+
+	//convert string data to reader
+	jsonReader := strings.NewReader(stringData)
+
+	resp, err := http.Post("https://jsonplaceholder.typicode.com/todos", "application/json", jsonReader)
+	if err != nil {
+		fmt.Println("Error Posting: ", err)
+		return
+	}
+
+	defer resp.Body.Close()
+
+	fmt.Println("Status response: ", resp.Status)   //201 Created
+
+	data, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println("Data: ", string(data))
+
+
+}
+
+func main() {
+	fmt.Println("Learning CRUD in GO")
+
+	performGetResponse()
+
+	performPostResponse()
 }
