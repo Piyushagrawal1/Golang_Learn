@@ -142,6 +142,29 @@ func performUpdateResponse() {
 
 }
 
+func performDeleteResponse() {
+	const myUrl = "https://jsonplaceholder.typicode.com/todos/1"
+
+	req, err := http.NewRequest("DELETE", myUrl, nil)
+	if err != nil {
+		fmt.Println("Error Creating: ", err)
+		return
+	}
+
+	//send the request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error Sending: ", err)
+		return
+	}
+
+	defer resp.Body.Close()
+
+	fmt.Println("Status response: ", resp.Status)
+
+}
+
 func main() {
 	fmt.Println("Learning CRUD in GO")
 
@@ -150,4 +173,6 @@ func main() {
 	performPostResponse()
 
 	performUpdateResponse()
+
+	performDeleteResponse()
 }
