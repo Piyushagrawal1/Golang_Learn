@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"strings"
 
 	"net/http"
@@ -91,11 +91,10 @@ func performPostResponse() {
 
 	defer resp.Body.Close()
 
-	fmt.Println("Status response: ", resp.Status)   //201 Created
+	fmt.Println("Status response: ", resp.Status) //201 Created
 
-	data, _ := ioutil.ReadAll(resp.Body)
+	data, _ := io.ReadAll(resp.Body)
 	fmt.Println("Data: ", string(data))
-
 
 }
 
