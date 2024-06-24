@@ -95,6 +95,50 @@ func performPostResponse() {
 
 	data, _ := io.ReadAll(resp.Body)
 	fmt.Println("Data: ", string(data))
+}
+
+func performUpdateResponse() {
+	todo := Todo{
+		UserID:    21852,
+		Title:     "Learn Go with Piyush Agrawal",
+		Completed: false,
+	}
+
+	data, err := json.Marshal(todo)
+	if err != nil {
+		fmt.Println("Error Marshalling: ", err)
+		return
+	}
+
+	const myUrl = "https://jsonplaceholder.typicode.com/todos/1"
+
+	//convert string data to reader
+	stringData := string(data)
+
+	//convert string data to reader
+	jsonReader := strings.NewReader(stringData)
+
+	req, err := http.NewRequest("PUT", myUrl, jsonReader)
+	if err != nil {
+		fmt.Println("Error Creating: ", err)
+		return
+	}
+	req.Header.Set("content-type", "application/json")
+
+	//send the request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error Sending: ", err)
+		return
+	}
+
+	defer resp.Body.Close()
+
+	fmt.Println("Status response: ", resp.Status)
+
+	datas, _ := io.ReadAll(resp.Body)
+	fmt.Println("Data: ", string(datas))
 
 }
 
@@ -104,4 +148,6 @@ func main() {
 	performGetResponse()
 
 	performPostResponse()
+
+	performUpdateResponse()
 }
